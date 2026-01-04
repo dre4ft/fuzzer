@@ -1,0 +1,6 @@
+requests
+rstr
+argparse
+fastapi
+sqlalchemy
+uvicorn 
