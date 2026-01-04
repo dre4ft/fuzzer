@@ -1,6 +1,5 @@
 import requests 
-from requests import HTTPError
-import re 
+
 """
 def basic_fuzzer(url, payload):
     response = requests.get(url.format(payload = payload),verify=False)

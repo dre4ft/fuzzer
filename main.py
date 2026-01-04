@@ -26,7 +26,7 @@ def initparser():
 if __name__ == "__main__":
    
 
-    #runapi_server()
+    runapi_server()
     """
     class args: 
         fuzzType = "range,1-10"
@@ -34,11 +34,11 @@ if __name__ == "__main__":
         method : str = None 
         body : dict = None 
         headers : dict  = None 
-    """
+    
     parser = initparser()
     args = parser.parse_args()
     print(do(args))
-    #"""
+    """
 
 
     """

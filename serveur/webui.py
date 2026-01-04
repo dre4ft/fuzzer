@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse, HTMLResponse,FileResponse
 from fastapi.staticfiles import StaticFiles
-from serveur.webui_api import router
+from .webui_api import router
 import json
 
 app = FastAPI()
@@ -21,3 +21,6 @@ app.mount("/static", StaticFiles(directory="serveur/static", html=True), name="s
 def runapi_server():
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8088)
+
+if __name__ == "__main__":
+    runapi_server()    

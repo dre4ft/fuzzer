@@ -10,3 +10,16 @@ roadmap :
 
 
 utilisation : 
+a date 4 type de fuzzing proposés :
+
+- range : 
+    - prend en parametre le debut et la fin du range, ex : range,1-10
+
+- wordlist : 
+    - prend en parametre le path dela wordlist, ex: wordlist,password.txt
+
+- regex : 
+    - prend en parametre le regex et le nombre d'iteration, ex : regex,^[a-z0-9]{2,10}$,10
+
+- random (alphanumerique)
+    - prend en parametre la taille de la chaine et le nombre d'iteration ex : rand,10,10

@@ -1,4 +1,4 @@
-from fuzzer import superfuzzer3000
+from core import superfuzzer3000
 import os
 from stringen import from_rand,from_regex
 import re

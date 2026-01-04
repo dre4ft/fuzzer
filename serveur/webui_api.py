@@ -1,30 +1,33 @@
-from fastapi import FastAPI, HTTPException,APIRouter,Depends
+from fastapi import  HTTPException,APIRouter,Depends
 import json
 from pydantic import BaseModel
 from .managedb import get_db
 from sqlalchemy.orm import Session
 from handler import do
-
+from typing import Optional
 
 router = APIRouter()
 
 
+
+
 class ScanSchema(BaseModel):
-    url : str 
-    fuzzType : str
-    method : str = None 
-    body : dict = None 
-    headers : dict  = None 
+    url: str
+    fuzzType: str
+    method: Optional[str] = None
+    body: Optional[dict] = None
+    headers: Optional[dict] = None
 
 
-@router.post("/submitscan")
+@router.post("/fuzz")
 def submitscan(scan : ScanSchema, db : Session = Depends(get_db)):
     try:
         result = do(scan)
         return {"result_id":result, 
                 "result": load_result(result)}
     except Exception as e:
-        return {"ko":e}
+        return HTTPException(status_code=469, detail=str(e))
+    
 
 
 

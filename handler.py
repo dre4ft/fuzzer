@@ -1,5 +1,4 @@
 from managefuzz import init, manager
-from findkeyword import find
 import os 
 
 def parse_fuzztype(fuzztype):
