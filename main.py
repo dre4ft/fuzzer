@@ -11,22 +11,93 @@ from handler import do
 
 """
 
+import argparse
+
 def initparser():
-    parser = argparse.ArgumentParser(description='fuzzer')
-    parser.add_argument('fuzzType', type=str,help="specify the fuzzing type")
-    parser.add_argument('url',type=str , help="url of the target")
-    parser.add_argument('--headers', type=str,default=None, help="add a custom header which can carry a fuzzing payload using the same syntax")
-    parser.add_argument('--body', type=str,default=None, help='add a custom header using a dict format which can carry a fuzzing payload using the same syntax')
-    parser.add_argument('--method', type=str,default=None, help='specify the HTTP Method (GET by default)')
+    parser = argparse.ArgumentParser(description="API Fuzzer")
+    subparsers = parser.add_subparsers(
+        dest="mode",
+        required=True,
+        help="Run mode"
+    )
+
+    # -------- CLI MODE --------
+    cli = subparsers.add_parser("cli", help="Run fuzzer in CLI mode")
+
+    cli.add_argument(
+        "fuzzType",
+        type=str,
+        help="Specify the fuzzing type (range, wordlist, regex, rand)"
+    )
+
+    cli.add_argument(
+        "url",
+        type=str,
+        help="Target URL (use FUZZ keyword)"
+    )
+
+    cli.add_argument(
+        "--headers",
+        type=str,
+        default=None,
+        help="Headers as JSON string (can include FUZZ)"
+    )
+
+    cli.add_argument(
+        "--body",
+        type=str,
+        default=None,
+        help="Body as JSON string (can include FUZZ)"
+    )
+
+    cli.add_argument(
+        "--method",
+        type=str,
+        default="GET",
+        help="HTTP method (GET by default)"
+    )
+
+    # -------- SERVER MODE --------
+    server = subparsers.add_parser("server", help="Run API server")
+
+    server.add_argument(
+        "--host",
+        type=str,
+        default="127.0.0.1",
+        help="Bind address"
+    )
+
+    server.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Bind port"
+    )
+
     return parser
 
+
+def main():
+    parser = initparser()
+    args = parser.parse_args()
+
+    if args.mode == "cli":
+
+        do(
+            args
+        )
+
+    elif args.mode == "server":
+        runapi_server(
+            host=args.host,
+            port=args.port
+        )
 
 
 
 if __name__ == "__main__":
    
-
-    runapi_server()
+    main()
     """
     class args: 
         fuzzType = "range,1-10"

@@ -41,7 +41,7 @@ def do(args):
         else : 
             raise Exception("invalid fuzzing format")
     else : 
-        print("no placeholder to fuzz founded")  
+        raise Exception("no placeholder to fuzz founded")  
 
 
 def gen_results_folder():
