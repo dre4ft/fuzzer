@@ -1,6 +1,6 @@
 roadmap :
 - ajouter les autres types  : mut, etc 
-- ajouter l4iunterface graphiaue aka la WebUI *P1*
+- mqnqgment des wordlists 
 - ajouter custom print et verbose
 - JWT fuzzer :
     - BF sur des cles venant d4une password list 
@@ -23,3 +23,19 @@ a date 4 type de fuzzing proposés :
 
 - random (alphanumerique)
     - prend en parametre la taille de la chaine et le nombre d'iteration ex : rand,10,10
+
+
+comment run :
+
+2 options : 
+
+- webUI :
+
+`python3 main.py server [--host] [--port]`
+
+- cli 
+`python3 main.py cli fuzztype host [--method] [--headers] [--body]`
+
+les headers et methodes doivent etre en format JSON ex: {"Content-Type":"application/json"}' 
+
+il est important de specifier le content type par defaut c'est du x-www-form-urlencoded

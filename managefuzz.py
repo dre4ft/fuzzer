@@ -25,6 +25,9 @@ def init(url_,method_=None,headers_=None,body_=None,verbose = None ):
     body = body_ if body_ else body 
 
 
+def simple_request():
+    return superfuzzer3000(url,method,headers,body)
+
 def manager(typeFuzz, parameter1, parameter2 = None ):
     global typefuzz
     typefuzz = typeFuzz+","+parameter1+","+(parameter2 if parameter2 else "")

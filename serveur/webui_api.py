@@ -6,6 +6,7 @@ from .managedb import get_db
 from sqlalchemy.orm import Session
 from handler import do
 from typing import Optional
+import os
 
 router = APIRouter()
 
@@ -27,7 +28,7 @@ def submitscan(scan : ScanSchema, db : Session = Depends(get_db)):
         return {"result_id":result, 
                 "result": load_result(result)}
     except Exception as e:
-        return HTTPException(status_code=469, detail=str(e))
+        raise HTTPException(status_code=469, detail=str(e))
     
 
 
@@ -41,7 +42,7 @@ def load_result(filename):
 def download_result(result_id: str):
     file_path = f"results/{result_id}.json"
 
-    if not file_path.exists():
+    if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Result not found")
 
     return FileResponse(
